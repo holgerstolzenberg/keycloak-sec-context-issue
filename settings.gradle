@@ -1,0 +1,7 @@
+pluginManagement {
+  plugins {
+    id 'org.springframework.boot' version "${springBootVersion}"
+  }
+}
+
+rootProject.name='keycloak-sec-context-issue'

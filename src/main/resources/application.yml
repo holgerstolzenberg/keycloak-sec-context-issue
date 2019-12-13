@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: 'prototype'
+  jmx:
+    enabled: false
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    org.keycloak: debug
+    com.ewerk.keycloak.issues: debug
+    root: error
+
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: env, beans, health, info, mappings
+  endpoint:
+    env:
+      enabled: on
+    beans:
+      enabled: on
+    health:
+      enabled: on
+    info:
+      enabled: on
+    mappings:
+      enabled: on
+
+api:
+  v1:
+    allowed-origins: '*'
+    base-path: '/api/v1'
+
+# TODO: connection settings might need to be changed
+keycloak:
+  auth-server-url: http://keycloak-showcase:8080/auth/
+  resource: prototype
+  realm: SAMPLE
+  principal-attribute: preferred_username
+  bearer-only: off
+  credentials:
+    secret: 29fff4ee-0a01-46b1-a052-4684b56558de
+  ssl-required: external
+  security-constraints:
+    - authRoles:
+        - '*'
+      securityCollections:
+        - patterns:
+            - /api/*
+  policy-enforcer-config:
+    enforcement-mode: enforcing
